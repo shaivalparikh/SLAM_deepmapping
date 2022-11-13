@@ -32,11 +32,11 @@ n_pc = len(local_pcds)
 local_pcds = [utils.remove_invalid_pcd(x) for x in local_pcds]
 
 if opt.metric == 'point':
-    metric = open3d.TransformationEstimationPointToPoint() 
+    metric = open3d.pipelines.registration.TransformationEstimationPointToPoint() 
 else:
-    metric = open3d.TransformationEstimationPointToPlane() 
+    metric = open3d.pipelines.registration.TransformationEstimationPointToPlane() 
     for idx in range(n_pc):
-        open3d.estimate_normals(local_pcds[idx],search_param = open3d.KDTreeSearchParamHybrid(radius=opt.radius,max_nn=10))
+        open3d.geometry.PointCloud.estimate_normals(local_pcds[idx],search_param = open3d.geometry.KDTreeSearchParamHybrid(radius=opt.radius,max_nn=10))
 
 
 pose_est = np.zeros((n_pc,3),dtype=np.float32)
@@ -44,7 +44,7 @@ print('running icp')
 for idx in range(n_pc-1):
     dst = local_pcds[idx]
     src = local_pcds[idx+1]
-    result_icp = open3d.registration_icp(src,dst,opt.radius,estimation_method=metric)
+    result_icp = open3d.pipelines.registration.registration_icp(src,dst,opt.radius,estimation_method=metric)
 
     R0 = result_icp.transformation[:2,:2]
     t0 = result_icp.transformation[:2,3:]

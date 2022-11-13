@@ -7,6 +7,7 @@ NAME=icp_v1_pose0
 # Error metrics for ICP
 # point: "point2point"
 # plane: "point2plane"
-METRIC=plane
+METRIC=point
 
-python incremental_icp.py --name $NAME -d $DATA_DIR -m $METRIC 
+# python incremental_icp.py --name $NAME -d $DATA_DIR -m $METRIC 
+python o3d_icp.py --name $NAME -d $DATA_DIR -m $METRIC -r 0.00001
