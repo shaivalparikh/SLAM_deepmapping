@@ -3,7 +3,8 @@ import glob
 import numpy as np
 import torch
 from torch.utils.data import Dataset
-from open3d import read_point_cloud
+from open3d import io
+# from io import read_point_cloud
 
 import utils
 
@@ -33,7 +34,7 @@ class SimulatedPointCloud(Dataset):
         self.pcds = [] # a list of open3d pcd objects 
         point_clouds = [] #a list of tensor <Lx2>
         for file in self.file_list:
-            pcd = read_point_cloud(file)
+            pcd = io.read_point_cloud(file)
             self.pcds.append(pcd)
 
             current_point_cloud = np.asarray(pcd.points, dtype=np.float32)[:, 0:2]
