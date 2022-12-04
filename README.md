@@ -1,3 +1,5 @@
+# Copy of the repository  : "[DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds](https://github.com/ai4ce/DeepMapping)"
+
 # DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds
 This repository contains PyTorch implementation associated with the paper:
 
