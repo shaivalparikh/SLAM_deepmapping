@@ -23,5 +23,5 @@ To run evaluation script:
   run_eval_2D.sh
 ```
 
-
+Other branches contain implementations of the same code using different algorithms/approaches.
 
