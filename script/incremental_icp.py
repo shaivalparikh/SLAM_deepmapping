@@ -7,20 +7,22 @@ import torch
 import numpy as np
 
 import utils
-from dataset_loader import SimulatedPointCloud
+from dataset_loader import AVD
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--name',type=str,default='test',help='experiment name')
 parser.add_argument('-m','--metric',type=str,default='point',choices=['point','plane'] ,help='minimization metric')
-parser.add_argument('-d','--data_dir',type=str,default='../data/2D/',help='dataset path')
+parser.add_argument('-d','--data_dir',type=str,default='../data/ActiveVisionDataset/Home_011_1',help='dataset path')
 opt = parser.parse_args()
 
-checkpoint_dir = os.path.join('../results/2D',opt.name)
+checkpoint_dir = os.path.join('../results/AVD',opt.name)
 if not os.path.exists(checkpoint_dir):
     os.makedirs(checkpoint_dir)
 utils.save_opt(checkpoint_dir,opt)
 
-dataset = SimulatedPointCloud(opt.data_dir)
+#dataset = SimulatedPointCloud(opt.data_dir)
+traj = 'traj1.txt'
+dataset= AVD(opt.data_dir,traj)
 n_pc = len(dataset)
 
 pose_est = np.zeros((n_pc,3),dtype=np.float32)
