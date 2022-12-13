@@ -111,12 +111,22 @@ class ObsFeat2D(nn.Module):
         self.n_out = n_out
         k = 3
         p = int(np.floor(k / 2)) + 2
-        self.transform = Transform(2)
+        self.conv1 = nn.Conv1d(2, 64, kernel_size=k, padding=p, dilation=3)
+        self.conv2 = nn.Conv1d(64, 128, kernel_size=k, padding=p, dilation=3)
+        self.conv3 = nn.Conv1d(
+            128, self.n_out, kernel_size=k, padding=p, dilation=3)
+        self.mp = nn.MaxPool1d(n_points)
+        # self.transform = Transform(2)
 
     def forward(self, x):
         assert(x.shape[1] == 2), "the input size must be <Bx2xL> "
 
-        x,_,_ = self.transform(x)
+        # x,_,_ = self.transform(x)
+        x = F.relu(self.conv1(x))
+        x = F.relu(self.conv2(x))
+        x = self.conv3(x)
+        x = self.mp(x)
+        x = x.view(-1, self.n_out)  # <Bx1024>
         return x
 
 

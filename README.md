@@ -1,8 +1,6 @@
 # Copy of the repository  : "[DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds](https://github.com/ai4ce/DeepMapping)"
 
-On branch - pointNet_extractor - we hae replaced the L_net LiDAR feature extractor head by PointNet feature extractor head to have better features for unorganized LiDAR point cloud.
-
-Mapping branch contains the code that replaces MLP M_net by SLAM inspired mapping method.
+On Mapping branch contains the code that replaces MLP M_net by SLAM inspired mapping method. The reference for the code is inspired by https://github.com/KanishAnand/Point-Cloud-Registration-and-Occupancy-Grid-Reconstruction/blob/master/Assignment_2.2/utils.py
 
 # DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds
 This repository contains PyTorch implementation associated with the paper:
