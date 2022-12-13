@@ -2,8 +2,6 @@
 
 On branch - pointNet_extractor - we hae replaced the L_net LiDAR feature extractor head by PointNet feature extractor head to have better features for unorganized LiDAR point cloud.
 
-Mapping branch contains the code that replaces MLP M_net by SLAM inspired mapping method.
-
 # DeepMapping: Unsupervised Map Estimation From Multiple Point Clouds
 This repository contains PyTorch implementation associated with the paper:
 
